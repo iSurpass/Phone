@@ -21,6 +21,10 @@ public class PhoneRecoginzeServiceImpl implements PhoneRecoginzeService{
 
     public static HashMap<String,PhoneInfo> cache = new LinkedHashMap<>();
 
+    /**
+     * 对数据进行初始化操作
+     * 加载到缓存中
+     */
     static {
         InputStream in = PhoneRecoginzeServiceImpl.class.getResourceAsStream("/phone.data.txt");
        // InputStreamReader inputStreamReader = new InputStreamReader(in);
@@ -40,6 +44,12 @@ public class PhoneRecoginzeServiceImpl implements PhoneRecoginzeService{
             });
     }
 
+    /**
+     * 查询服务
+     *
+     * @param phone
+     * @return
+     */
     @Override
     public PhoneInfo onCall(String phone) {
 
@@ -51,6 +61,15 @@ public class PhoneRecoginzeServiceImpl implements PhoneRecoginzeService{
         return phoneInfo;
     }
 
+    /**
+     * 利用二分法进行查询
+     *
+     * @param phone
+     * @param start
+     * @param end
+     * @param hkey
+     * @return
+     */
     public PhoneInfo search(String[] phone,int start,int end,int hkey){
 
         PhoneInfo phoneInfo = null;
